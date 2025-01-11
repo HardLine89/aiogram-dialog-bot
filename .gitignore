@@ -169,3 +169,8 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+.idea
+./__pycache__/
+./*/__pycache__/
+./*/*__pycache__/
+./*/*/*__pycache__/
