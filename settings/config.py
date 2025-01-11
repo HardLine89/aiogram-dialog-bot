@@ -1,3 +1,4 @@
+from aiogram import Bot
 from pydantic_settings import BaseSettings
 
 
@@ -26,3 +27,4 @@ class Settings(BaseSettings):
 
 class AppConfig:
     settings = Settings()
+    bot = Bot(token=settings.bot_token)
