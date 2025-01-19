@@ -4,6 +4,7 @@ from aiogram import Dispatcher
 
 from bot.handlers.start import start_router
 from settings.config import AppConfig
+from settings.database import Database
 
 config = AppConfig()
 

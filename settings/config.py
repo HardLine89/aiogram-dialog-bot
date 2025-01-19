@@ -12,13 +12,9 @@ class Settings(BaseSettings):
     db_password: str
     db_name: str
 
-    @property
     def db_url(self) -> str:
         """Генерация URL для подключения к базе данных."""
-        return (
-            f"postgresql://{self.db_user}:{self.db_password}@"
-            f"{self.db_host}:{self.db_port}/{self.db_name}?async_fallback=True"
-        )
+        return f"postgresql+asyncpg://{self.db_user}:{self.db_password}@{self.db_host}:{self.db_port}/{self.db_name}?async_fallback=True"
 
     class Config:
         env_file = ".env"

@@ -1,10 +1,10 @@
 services:
 
-  db_postgres:
+  db:
     image: postgres:16-alpine
-    container_name: db_postgres
+    container_name: db
     ports:
-      - 5433:5433
+      - 5433:5432
     env_file:
       - .env
     environment:
@@ -13,7 +13,7 @@ services:
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_HOST=${DB_HOST}
     volumes:
-      - db_postgres:/var/lib/postgresql/data
+      - db_data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
       interval: 5s
@@ -38,7 +38,7 @@ services:
             - "**/__pycache__"
             - "**/*.pyc"
     depends_on:
-      db_postgres:
+      db:
         condition: service_healthy
     env_file:
       - .env
@@ -55,4 +55,4 @@ networks:
     driver: bridge
 
 volumes:
-  db_postgres:
+  db_data:
